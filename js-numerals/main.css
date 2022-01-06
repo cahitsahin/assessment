@@ -1,0 +1,94 @@
+body {
+  background: #222d32;
+  font-family: 'Roboto', sans-serif;
+}
+
+.box {
+  margin-top: 75px;
+  margin-left: 150px;
+  margin-right: 150px;
+  height: auto;
+  width: auto;
+  background: #1a2226;
+  text-align: center;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.title {
+  margin-top: 15px;
+  text-align: center;
+  font-size: 30px;
+  letter-spacing: 2px;
+  margin-top: 15px;
+  font-weight: bold;
+  color: #ecf0f5;
+}
+
+.form {
+  margin-top: 25px;
+  text-align: center;
+}
+
+input[type='number'] {
+  background-color: #1a2226;
+  border: none;
+  border-bottom: 2px solid #0db8de;
+  border-top: 0px;
+  border-radius: 0px;
+  font-weight: bold;
+  outline: 0;
+  margin-bottom: 20px;
+  padding-left: 0px;
+  color: #ecf0f5;
+}
+
+.form-control:focus {
+  border-color: inherit;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border-bottom: 2px solid #0db8de;
+  outline: 0;
+  background-color: #1a2226;
+  color: #ecf0f5;
+}
+
+input:focus {
+  outline: none;
+  box-shadow: 0 0 0;
+}
+
+label {
+  margin-bottom: 0px;
+}
+
+.form-control-label {
+  font-size: 10px;
+  color: #ecf0f5;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.btn-outline-primary {
+  background-color: #003550;
+  color: #ffffff;
+  border-radius: 0px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.btn-outline-primary:hover {
+  background-color: #0db8de;
+  right: 0px;
+}
+
+.button {
+  padding-right: 0px;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.output-text {
+  text-align: center;
+  padding-left: 0px;
+  color: #ffffff;
+}
