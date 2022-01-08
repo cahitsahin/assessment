@@ -89,11 +89,28 @@ function convert_tens(num) {
 
 //Function that return English words of number
 function convert(num) {
+  //include the word "and" between the hundreds figure and the other part
+  if (num > 100 && num % 100 > 0) {
+    finalString = convert_billions(num)
+    let myArray = finalString.split(' ')
+    let tempString = myArray[myArray.length - 1]
+    myArray[myArray.length - 1] = 'and'
+    myArray[myArray.length] = tempString
+    var finalString = myArray.join(' ')
+  }
+
   if (num == 0) return 'zero'
-  else return convert_billions(num)
+  else return finalString
 }
 
 function main() {
-  console.log(convert(54748645786456456))
+  var testCases = [
+    0, 1, 2, 9, 56, 78, 2323, 343434, 14565, 1956, 265560, 2165, 25, 29, 30, 35,
+    50, 55, 6569, 74560, 99, 100, 101, 119, 510, 900, 165000, 5001, 5019, 5555,
+    10000, 11000, 100000, 199001, 1000000, 1111111, 555555, 9999999999,
+  ]
+  for (var i = 0; i < testCases.length; i++) {
+    console.log(testCases[i] + ': ' + convert(testCases[i]))
+  }
 }
 main()
