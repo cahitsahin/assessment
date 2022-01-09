@@ -61,14 +61,14 @@ label {
   margin-bottom: 0px;
 }
 
-.form-control-label {
+.form-label {
   font-size: 10px;
   color: #ecf0f5;
   font-weight: bold;
   letter-spacing: 1px;
 }
 
-.btn-outline-primary {
+.button-outline {
   background-color: #003550;
   color: #ffffff;
   border-radius: 0px;
@@ -76,7 +76,7 @@ label {
   letter-spacing: 1px;
 }
 
-.btn-outline-primary:hover {
+.button-outline:hover {
   background-color: #0db8de;
   right: 0px;
 }

@@ -87,23 +87,36 @@ function convert_tens(num) {
   }
 }
 
-//Function that return English words of number
-function convert(num) {
-  //include the word "and" between the hundreds figure and the other part
-  if (num > 100 && num % 100 > 0) {
-    finalString = convert_billions(num)
-    let myArray = finalString.split(' ')
-    let tempString = myArray[myArray.length - 1]
-    myArray[myArray.length - 1] = 'and'
-    myArray[myArray.length] = tempString
-    var finalString = myArray.join(' ')
-  }
+function add_and(num) {
+  let tempString = convert_billions(num)
+  //Set an array contain word of number
+  let myArray = tempString.split(' ')
+  let tempString2 = myArray[myArray.length - 1]
+  //Adding word "and" to array
+  myArray[myArray.length - 1] = 'and'
+  myArray[myArray.length] = tempString2
+  return myArray.join(' ')
+}
 
-  if (num == 0) return 'zero'
-  else return finalString
+function convert(num) {
+  //If num greater than 100 and have other part, adding the word "and".
+  if (num > 100 && num % 100 > 0) return add_and(num)
+  else if (num == 0) return 'zero'
+  else return convert_billions(num)
 }
 
 function main() {
+  let button = document.getElementById('button')
+  let input = document.getElementById('input')
+  let output = document.getElementById('output')
+
+  if (button) {
+    button.addEventListener('click', function () {
+      output.innerHTML = 'Converted number : ' + convert(input.value)
+    })
+  }
+
+  //Test cases that work on terminal
   var testCases = [
     0, 1, 2, 9, 56, 78, 2323, 343434, 14565, 1956, 265560, 2165, 25, 29, 30, 35,
     50, 55, 6569, 74560, 99, 100, 101, 119, 510, 900, 165000, 5001, 5019, 5555,
