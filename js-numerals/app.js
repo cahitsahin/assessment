@@ -99,8 +99,13 @@ function add_and(num) {
 }
 
 function convert(num) {
+  //Minus numbers
+  if (num < 0) {
+    if (num < -100 && num % 100 < 0) return 'Minus ' + add_and(Math.abs(num))
+    else return 'Minus ' + convert_billions(Math.abs(num))
+  }
   //If num greater than 100 and have other part, adding the word "and".
-  if (num > 100 && num % 100 > 0) return add_and(num)
+  else if (num > 100 && num % 100 > 0) return add_and(num)
   else if (num == 0) return 'zero'
   else return convert_billions(num)
 }
