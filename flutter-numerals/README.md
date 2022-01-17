@@ -1,6 +1,6 @@
 # Arabic number conversion tool
 
-Create a web-based solution that converts numeric input into the English phrase of that number. 
+Create a Flutter app that converts numeric input into the English phrase of that number. 
 
 For example:
 <pre>
@@ -17,7 +17,6 @@ Note: Numbers greater than 100 and less than 1000 always include the word "and" 
 
 Treat this task like a project to create a real-life application, focus on other aspects too, not just the code:
 - Fork this project.
-- Use the best stack matching the simplicity of the task.
 - Don't use external libraries for the conversion.
 - Make the solution pleasant to look at and user friendly in as many aspects as you can.
 - Commit the important milestones and not just the final result.
