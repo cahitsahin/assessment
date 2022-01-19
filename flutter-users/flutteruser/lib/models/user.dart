@@ -5,8 +5,8 @@ class User {
   final String firstName;
   final String url;
   final bool status;
-  final DateTime createdAt;
-  final DateTime updatedAt;
+  final String createdAt;
+  final String updatedAt;
 
   User(this.id, this.lastName, this.firstName, this.url, this.status, this.createdAt, this.updatedAt,
         );
@@ -16,7 +16,7 @@ class User {
     lastName= json['last_name'],
     firstName = json['first_name'],
     url = json['url'],
-    status = json['status'],
+    status = json['status']=="active"?true:false,
     createdAt = json['created_at'],
     updatedAt = json['updated_at'];
 }

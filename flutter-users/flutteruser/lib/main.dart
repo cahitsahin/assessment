@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutteruser/blocs/user_provider.dart';
 import 'package:flutteruser/screens/home.dart';
 
 void main() {
@@ -11,10 +12,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.amber,
       ),
-      home: const HomePage(title: 'Flutter Demo Home Page'),
+      home:UserProvider(child: const HomePage(),),
     );
   }
 }
