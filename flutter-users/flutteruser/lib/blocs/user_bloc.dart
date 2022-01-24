@@ -1,54 +1,32 @@
-import 'dart:convert';
 
+import 'package:flutteruser/data/repository.dart';
 import 'package:flutteruser/models/user.dart';
-import 'package:http/http.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert' as convert;
 
-class UserBloc{
+class UserBloc {
+
+  UserBloc(){
+    fetchUsers();
+  }
 
   final _users = BehaviorSubject<List<User>>();
-  
-  Stream<List<User>> get contacts => _users.stream;
+  final Repository _repository=Repository();
 
-  Function(List<User>) get changeContacts => _users.sink.add;
 
+
+  //Get Data
+  Stream<List<User>> get user => _users.stream;
+
+  //Set Data
+  Function(List<User>) get changeUser => _users.sink.add;
 
   dispose(){
     _users.close();
   }
 
-  Future<List<User>> fetchUsers()async{ 
-
-    var uri = "https://assessment-users-backend.herokuapp.com/users.json";
-    var response = await http.get(Uri.parse(uri));
-    List<User> userList = (convert.jsonDecode(response.body) as List)
-        .map((f) => User.fromJson(f))
-        .toList();
-    return userList;
-
-  }
-  
-  Future<void> deleteUser(int id) async {
-    var uri = "https://assessment-users-backend.herokuapp.com/user";
-    Response res = await delete(Uri.parse("$uri/$id"));
-
-    if (res.statusCode == 200) {
-      print("DELETED");
-    } else {
-      throw res.body.toString();
-    }
-  }
-
-  Future<http.Response> createUser(String firstName, String lastName,) async{
-    var uri = "https://assessment-users-backend.herokuapp.com/users";
-    var body = jsonEncode({"first_name": firstName, "last_name": lastName,"status":"active"});
-
-    http.Response response = await http.post(Uri.parse(uri),headers: <String, String>{
-      'Content-Type': 'application/json; charset=UTF-8',
-    }, body: body);
-    return response;
-  }
+  fetchUsers() => _repository.fetchUsers().then((users) => changeUser(users));
+  createUsers(String firstName,String lastName ) => _repository.createUser(firstName, lastName);
+  updateUsers(String firstName,String lastName,int id, bool status) => _repository.updateUsers(firstName, lastName, id,status);
+  deleteUsers(int id) => _repository.deleteUsers(id).then((users) => changeUser(users));
 
 }

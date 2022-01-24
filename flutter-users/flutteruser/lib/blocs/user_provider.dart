@@ -4,6 +4,7 @@ export 'package:flutteruser/blocs/user_bloc.dart';
 
 class UserProvider extends InheritedWidget {
   final UserBloc bloc = UserBloc();
+  final UserBloc bloc2 = UserBloc();
 
   UserProvider({Key? key, required Widget child}) : super(key: key, child: child);
 

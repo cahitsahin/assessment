@@ -32,8 +32,8 @@ class _HomePageState extends State<HomePage> {
             },
           ),
         ),
-        body: FutureBuilder<List<User>>(
-          future: bloc.fetchUsers(),
+        body: StreamBuilder<List<User>>(
+          stream: bloc.user,
           builder: (context, result) {
             if (result.hasData) {
               users = result.data;
@@ -41,6 +41,7 @@ class _HomePageState extends State<HomePage> {
               return ListView.builder(
                 itemCount: users!.length,
                 itemBuilder: (context, index) {
+                  // Time and Name Formatting
                   DateTime time =
                       DateTime.parse(result.data?[index].createdAt ?? "");
                   String formattedDate =
@@ -51,6 +52,7 @@ class _HomePageState extends State<HomePage> {
                       s[0].toUpperCase() + s.substring(1);
                   name = capitalize(name);
                   surName = capitalize(surName);
+
                   return Card(
                     child: ListTile(
                       title: Row(
@@ -70,8 +72,12 @@ class _HomePageState extends State<HomePage> {
                       ),
                       subtitle: Text(formattedDate),
                       trailing: GestureDetector(
-                        onTapDown: (TapDownDetails details) {
-                          bloc.deleteUser(result.data![index].id);
+                        onTapDown: (TapDownDetails details) async {
+                          bloc.deleteUsers(users![index].id);
+                          Future.delayed(Duration.zero, () {
+                            bloc.changeUser;
+                          });
+                          setState(() {});
                         },
                         child: const Icon(
                           Icons.delete,
@@ -101,7 +107,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     Future.delayed(Duration.zero, () async {
       final bloc = UserProvider.of(context);
-      bloc.fetchUsers();
+      bloc.user;
     });
 
     super.initState();

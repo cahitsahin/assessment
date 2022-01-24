@@ -19,5 +19,6 @@ class User {
     status = json['status']=="active"?true:false,
     createdAt = json['created_at'],
     updatedAt = json['updated_at'];
+
 }
 
